@@ -124,6 +124,9 @@ else()
     set(IS_DEBUG OFF)
 endif()
 
+set(EXECUTABLE_OUTPUT_PATH "${PROJECT_BINARY_DIR}")
+set(LIBRARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}")
+
 if("${CMAKE_BUILD_TYPE}" STREQUAL "ClangTidy")
     find_program(CLANG_TIDY_EXE NAMES clang-tidy)
     if(NOT CLANG_TIDY_EXE)

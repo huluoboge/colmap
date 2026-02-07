@@ -5,6 +5,15 @@
 #include <ceres/ceres.h>
 #include <ceres/rotation.h>
 
+
+namespace Eigen{
+  template<typename T, int Rows>
+  class Vector : public Matrix<T, Rows, 1> {
+  public:
+      using Base = Matrix<T, Rows, 1>;
+      using Base::Base;  // 继承构造函数
+  };
+}
 namespace glomap {
 
 // ----------------------------------------
@@ -226,8 +235,10 @@ class FetzerFocalLengthCost {
 
   template <typename T>
   bool operator()(const T* const fi_, const T* const fj_, T* residuals) const {
-    const Eigen::Vector<T, 4> d_01_ = d_01.cast<T>();
-    const Eigen::Vector<T, 4> d_12_ = d_12.cast<T>();
+    // const Eigen::Vector<T, 4> d_01_ = d_01.cast<T>();
+    // const Eigen::Vector<T, 4> d_12_ = d_12.cast<T>();
+    const Eigen::Matrix<T, 4, 1> d_01_ = d_01.cast<T>();
+    const Eigen::Matrix<T, 4, 1> d_12_ = d_12.cast<T>();
 
     const T fi = fi_[0];
     const T fj = fj_[0];

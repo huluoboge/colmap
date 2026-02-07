@@ -27,16 +27,18 @@ find_package(Boost ${COLMAP_FIND_TYPE} COMPONENTS
 
 find_package(Eigen3 ${COLMAP_FIND_TYPE})
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(OpenImageIO REQUIRED IMPORTED_TARGET OpenImageIO)
 find_package(OpenImageIO ${COLMAP_FIND_TYPE})
 
 find_package(Metis ${COLMAP_FIND_TYPE})
 
-find_package(Glog ${COLMAP_FIND_TYPE})
-if(DEFINED glog_VERSION_MAJOR)
-  # Older versions of glog don't export version variables.
-  list(APPEND COLMAP_COMPILE_DEFINITIONS GLOG_VERSION_MAJOR=${glog_VERSION_MAJOR})
-  list(APPEND COLMAP_COMPILE_DEFINITIONS GLOG_VERSION_MINOR=${glog_VERSION_MINOR})
-endif()
+# find_package(Glog ${COLMAP_FIND_TYPE})
+# if(DEFINED glog_VERSION_MAJOR)
+#   # Older versions of glog don't export version variables.
+#   list(APPEND COLMAP_COMPILE_DEFINITIONS GLOG_VERSION_MAJOR=${glog_VERSION_MAJOR})
+#   list(APPEND COLMAP_COMPILE_DEFINITIONS GLOG_VERSION_MINOR=${glog_VERSION_MINOR})
+# endif()
 
 find_package(SQLite3 ${COLMAP_FIND_TYPE})
 
