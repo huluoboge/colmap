@@ -30,10 +30,12 @@
 #include "colmap/scene/database.h"
 
 #include "colmap/scene/database_sqlite.h"
+#include "colmap/scene/database_file.h"
 
 namespace colmap {
 
-std::vector<Database::Factory> Database::factories_ = {&OpenSqliteDatabase};
+// std::vector<Database::Factory> Database::factories_ = {&OpenFileDatabase, &OpenSqliteDatabase};
+std::vector<Database::Factory> Database::factories_ = {&OpenFileDatabase};
 
 void Database::Register(Factory factory) {
   factories_.push_back(std::move(factory));

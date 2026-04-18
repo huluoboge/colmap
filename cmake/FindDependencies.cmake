@@ -33,6 +33,14 @@ find_package(OpenImageIO ${COLMAP_FIND_TYPE})
 
 find_package(Metis ${COLMAP_FIND_TYPE})
 
+find_package(OpenCV REQUIRED )
+if (NOT OpenCV_FOUND OR OpenCV_VERSION VERSION_LESS "3.0.0")
+    message(STATUS "OpenCV was not found (note that OpenCV version >= 3.0.0 is required). ")
+endif()
+
+include_directories(${OpenCV_INCLUDE_DIRS})
+list(APPEND COLMAP_EXPORT_LIBS ${OpenCV_LIBS})
+
 # find_package(Glog ${COLMAP_FIND_TYPE})
 # if(DEFINED glog_VERSION_MAJOR)
 #   # Older versions of glog don't export version variables.

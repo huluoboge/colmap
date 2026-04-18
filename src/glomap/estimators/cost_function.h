@@ -6,14 +6,14 @@
 #include <ceres/rotation.h>
 
 
-namespace Eigen{
-  template<typename T, int Rows>
-  class Vector : public Matrix<T, Rows, 1> {
-  public:
-      using Base = Matrix<T, Rows, 1>;
-      using Base::Base;  // 继承构造函数
-  };
-}
+// namespace Eigen{
+//   template<typename T, int Rows>
+//   class Vector : public Matrix<T, Rows, 1> {
+//   public:
+//       using Base = Matrix<T, Rows, 1>;
+//       using Base::Base;  // 继承构造函数
+//   };
+// }
 namespace glomap {
 
 // ----------------------------------------

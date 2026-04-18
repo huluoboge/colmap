@@ -902,7 +902,10 @@ bool OptionManager::Check() {
 
   if (added_database_options_) {
     const auto database_parent_path = GetParentDir(*database_path);
-    success = success && CHECK_OPTION_IMPL(!ExistsDir(*database_path)) &&
+    // success = success && CHECK_OPTION_IMPL(!ExistsDir(*database_path)) &&
+    //         CHECK_OPTION_IMPL(database_parent_path == "" ||
+    //                           ExistsDir(database_parent_path));
+    success = success && // file database need a dir
               CHECK_OPTION_IMPL(database_parent_path == "" ||
                                 ExistsDir(database_parent_path));
   }
@@ -1002,7 +1005,7 @@ bool OptionManager::Read(const std::string& path) {
   config::variables_map vmap;
 
   if (!ExistsFile(path)) {
-    LOG(ERROR) << "Configuration file does not exist.";
+    LOG(ERROR) << "Configuration file does not exist: " << path << ".";
     return false;
   }
 
